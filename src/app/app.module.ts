@@ -7,6 +7,9 @@ import {RouterModule} from '@angular/router';
 import {ROUTES} from './app.routes';
 import { AlbumComponent } from './components/album/album.component';
 import { AlbumsComponent } from './components/albums/albums.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {InterceptorService} from './services/interceptor.service';
+import {RequestService} from './services/request.service';
 
 
 @NgModule({
@@ -17,9 +20,13 @@ import { AlbumsComponent } from './components/albums/albums.component';
     AlbumsComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(ROUTES)
+    BrowserModule, RouterModule.forRoot(ROUTES), HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }, RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
