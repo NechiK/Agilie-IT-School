@@ -10,6 +10,12 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {InterceptorService} from './services/interceptor.service';
 import {RequestService} from './services/request.service';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AuthService} from './services/auth.service';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -20,13 +26,17 @@ import {RequestService} from './services/request.service';
     AlbumsComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(ROUTES), HttpClientModule
+    BrowserModule, RouterModule.forRoot(ROUTES), HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true
-  }, RequestService],
+  }, RequestService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
