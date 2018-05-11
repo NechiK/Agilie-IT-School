@@ -10,7 +10,6 @@ import {Observable} from 'rxjs/Observable';
 })
 export class DashboardComponent implements OnInit {
   itemsRef: AngularFireList<any>;
-  songRef: AngularFireList<any>;
   items: Observable<any[]>;
   msg: '';
 
@@ -23,21 +22,7 @@ export class DashboardComponent implements OnInit {
   getMessages() {
     return this.afDb.list('messages');
   }
-  getSongs() {
-    return this.afDb.list('songs');
-  }
 
-  addSong() {
-    const user = this.authService.getUser();
-    this.songRef = this.getSongs();
-    this.songRef.push({
-      song: '1',
-      userName: user.name,
-      email: user.email,
-      test: 1
-    });
-    this.msg = '';
-  }
   sendMessage(msg: string) {
     const user = this.authService.getUser();
     this.itemsRef = this.getMessages();
