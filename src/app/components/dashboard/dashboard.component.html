@@ -1,3 +1,16 @@
-<p>
+<div>
   dashboard works!
-</p>
+  <button (click)="pushToSomeArray()">PUSH</button>
+
+  {{someArray}}
+
+  <div *appLoop="let msg of someArray">
+    {{msg}}
+  </div>
+
+
+  <h1>RANGE</h1>
+  <div *appRange="[20,30]; let num">
+    {{num}}
+  </div>
+</div>

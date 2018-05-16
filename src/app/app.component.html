@@ -1,6 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <a href="" [routerLink]="['']">Go to dashboard</a>
 <a href="" [routerLink]="['albums']">Go to albums</a>
-<router-outlet></router-outlet>
+<a href="" [routerLink]="['profile']">Go to profile</a>
+<div [@routeAnimation]="prepRouteState(routerOutlet)">
+  <router-outlet #routerOutlet="outlet"></router-outlet>
+</div>
 
 

@@ -7,11 +7,17 @@ import {RequestService} from '../../services/request.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  someArray: Array<any>;
 
   constructor(private requestService: RequestService) { }
 
   ngOnInit() {
+    this.someArray = [1, 2, 3];
     this.requestService.getShots().subscribe();
+  }
+
+  pushToSomeArray() {
+    this.someArray.push(1);
   }
 
 }
